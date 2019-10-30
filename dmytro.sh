@@ -101,6 +101,33 @@ prepare_meta_yaml() {
   sed -i "s|id: redhat/java/latest|alias: java8\n    reference: $PR_CHECK_FILES_GITHUB_URL/java8_meta.yaml|" ${DEVFILE_URL}
   sed -i "s|id: redhat/vscode-yaml/latest|alias: vscode_yaml\n    reference: $PR_CHECK_FILES_GITHUB_URL/vscode_yaml_meta.yaml\n  - type: chePlugin\n    alias: vscode_kubernetes_tools\n    reference: $PR_CHECK_FILES_GITHUB_URL/vscode_kubernetes_tools_meta.yaml|" ${DEVFILE_URL}
 
+  # Create the simplest devfile to run
+  SIMPLE_RELATIVE_DIR="simple"
+  PR_CHECK_FILES_SIMPLE_DIR=${WORKSPACE}/pr-check-files/che-theia/pr-${ghprbPullId}/${SIMPLE_RELATIVE_DIR}
+  mkdir -p ${PR_CHECK_FILES_SIMPLE_DIR}
+  THEIA_SIMPLE_META_YAML=$(curl ${CHE_THEIA_META_YAML_URL} | sed "s|docker.io/eclipse/che-theia:next|maxura/che-theia:${ghprbPullId}|" | sed "s|displayName: theia-ide|displayName: theia-ide (PR ${ghprbPullId})|")
+
+  # Write meta.yaml in this repository
+  echo "${THEIA_SIMPLE_META_YAML}" > "${PR_CHECK_FILES_SIMPLE_DIR}"/che-theia-editor.yaml
+  THEIA_SIMPLE_META_YAML_LINK=${PR_CHECK_FILES_GITHUB_URL}/${SIMPLE_RELATIVE_DIR}/che-theia-editor.yaml
+
+  THEIA_SIMPLE_DEVFILE_TEMPLATE="
+apiVersion: 1.0.0
+metadata:
+  generateName: pr-che_theia-${ghprbPullId}-
+attributes:
+  persistVolumes: 'false'
+components:
+  - reference: ${META_YAML_LINK}
+    type: cheEditor
+"
+
+  echo "${THEIA_SIMPLE_DEVFILE_TEMPLATE}" > "${PR_CHECK_FILES_SIMPLE_DIR}"/che-theia-simple-devfile.yaml
+  MARKDOWN_COMMENT="
+https://che.openshift.io/f/?url=${PR_CHECK_FILES_GITHUB_URL}/${SIMPLE_RELATIVE_DIR}/che-theia-simple-devfile.yaml
+"
+  echo "${THEIA_SIMPLE_DEVFILE_TEMPLATE}" > "${PR_CHECK_FILES_DIR}"/comment.md
+
   cat ${DEVFILE_URL}
 
   cp ${DEVFILE_URL} ${PR_CHECK_FILES_DIR}
