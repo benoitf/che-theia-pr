@@ -5,6 +5,6 @@ metadata:
 attributes:
   persistVolumes: 'false'
 components:
-  - reference: https://raw.githubusercontent.com/benoitf/che-theia-pr/master//pr-520/che-theia-editor.yaml
+  - reference: https://raw.githubusercontent.com/benoitf/che-theia-pr/master/pr-520/che-theia-editor.yaml
     type: cheEditor
 
