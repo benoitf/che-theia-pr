@@ -28,4 +28,5 @@ Tested with Eclipse Che Single User on K8S (minikube v1.1.1)
 </p>
 </details>
 
+Use command "crw-ci-test" to rerun the test.
 
