@@ -1,6 +1,6 @@
 :white_check_mark: E2E Happy path tests of Eclipse Che Single User on K8S (minikube v1.1.1) has been successful :tada:
 
-_Click on images to review:_ [![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
+_Click to review on che.openshift.io online instance:_ [![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
 
 <details>
 <summary>See Details</summary>
@@ -14,7 +14,6 @@ _Click on images to review:_ [![Try it](https://chepullreq4.github.io/pr-check-f
 
 | name | link|
 |---|---|
-| che-theia | docker.io/maxura/che-theia:${ghprbPullId}|
 | che-theia | docker.io/maxura/che-theia:${ghprbPullId}|
 | che-remote-plugin-node | docker.io/maxura/che-remote-plugin-node:${ghprbPullId}|
 | che-remote-plugin-runner-java8 | docker.io/maxura/che-remote-plugin-runner-java8:${ghprbPullId}|
