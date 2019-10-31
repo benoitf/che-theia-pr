@@ -1,4 +1,4 @@
- :x: E2E Happy path has failed :heavy_exclamation_mark:
+ :x: E2E Happy path failed :heavy_exclamation_mark:
 
 [![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
 
