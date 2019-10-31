@@ -1,7 +1,6 @@
-E2E Happy path tests of Eclipse Che Single User on K8S (minikube v1.1.1) has been successful :tada:
+:white_check_mark: E2E Happy path tests of Eclipse Che Single User on K8S (minikube v1.1.1) has been successful :tada:
 
-
-[![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
+Click on buttons to review: [![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
 
 <details>
 <summary>See Details</summary>
