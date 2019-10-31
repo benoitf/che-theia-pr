@@ -1,4 +1,4 @@
- :x: E2E Happy path has finished with an error :fire_engine:
+ :x: E2E Happy path finished with an error :fire_engine:
 
 [![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
 
