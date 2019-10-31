@@ -1,4 +1,4 @@
- :x: E2E Happy path has failed :fire_engine: :heavy_exclamation_mark:
+ :x: E2E Happy path has failed :heavy_exclamation_mark: :fire_engine:
 
 [![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
 
@@ -28,5 +28,5 @@ Tested with Eclipse Che Single User on K8S (minikube v1.1.1)
 </p>
 </details>
 
-:information_source: `Use comment "crw-ci-test" to rerun the test.`
+:information_source: `Use comment "crw-ci-test" to rerun happy path E2E test.`
 
