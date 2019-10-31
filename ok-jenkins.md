@@ -10,6 +10,8 @@
 
 - [logs and configs](${BUILD_URL}artifact/logs-and-configs/)
 
+- [Happy path tests DevFile](https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/happy-path-workspace.yaml)
+
 - images:
 
 | name | link|
@@ -18,8 +20,6 @@
 | che-remote-plugin-node | docker.io/maxura/che-remote-plugin-node:${ghprbPullId}|
 | che-remote-plugin-runner-java8 | docker.io/maxura/che-remote-plugin-runner-java8:${ghprbPullId}|
 | che-remote-plugin-kubernetes-tooling-1.0.0 | docker.io/maxura/che-remote-plugin-kubernetes-tooling-1.0.0:${ghprbPullId}|
-
-- [Happy path tests DevFile](https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/happy-path-workspace.yaml)
 
 Tested with Eclipse Che Single User on K8S (minikube v1.1.1)
 
