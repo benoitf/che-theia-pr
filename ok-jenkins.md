@@ -1,4 +1,4 @@
-:white_check_mark: E2E Happy path is successful :tada:
+:white_check_mark: E2E Happy path succeed :tada:
 
 [![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
 
