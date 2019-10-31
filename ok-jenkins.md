@@ -5,7 +5,7 @@
 <details>
 <summary>See Details<br>
   
-`Tested with Eclipse Che Single User on K8S (minikube v1.1.1)`
+Tested with Eclipse Che Single User on K8S (minikube v1.1.1)
 </summary>
 <p>
 
