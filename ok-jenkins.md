@@ -1,6 +1,8 @@
 :white_check_mark: E2E Happy path succeed :tada:
 
-[![Try it](https://chepullreq4.github.io/pr-check-files/live-review.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
+[![Try Che-Theia editor only](https://chepullreq4.github.io/pr-check-files/che-theia/try-it.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-simple-devfile.yaml) 
+[![Try Che-Theia with Java/maven example](https://chepullreq4.github.io/pr-check-files/che-theia/try-it-java-maven.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-maven-devfile.yaml) 
+[![Try Che-Theia with NodeJs example](https://chepullreq4.github.io/pr-check-files/che-theia/try-it-nodejs.svg)](https://che.openshift.io/f/?url=https://raw.githubusercontent.com/chepullreq4/pr-check-files/master/che-theia/pr-${ghprbPullId}/simple/che-theia-nodejs-devfile.yaml) 
 
 <details>
 <summary>See Details</summary>
