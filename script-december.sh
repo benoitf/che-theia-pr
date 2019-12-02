@@ -3,9 +3,6 @@ set -ex
 
 setup_environment() {
   export CHE_THEIA_META_YAML_URL='https://raw.githubusercontent.com/eclipse/che-plugin-registry/master/v3/plugins/eclipse/che-theia/next/meta.yaml'
-  export VSCODE_YAML_META_YAML_DIR_URL='https://raw.githubusercontent.com/eclipse/che-plugin-registry/master/v3/plugins/redhat/vscode-yaml/'
-  export JAVA8_META_YAML_DIR_URL='https://raw.githubusercontent.com/eclipse/che-plugin-registry/master/v3/plugins/redhat/java8/'
-  export VSCODE_KUBERNETES_TOOLS_META_YAML_DIR_URL='https://raw.githubusercontent.com/eclipse/che-plugin-registry/master/v3/plugins/ms-kubernetes-tools/vscode-kubernetes-tools/'
   export JAVA_MAVEN_DEVFILE_YAML_URL='https://raw.githubusercontent.com/eclipse/che-devfile-registry/master/devfiles/java-maven/devfile.yaml'
   export NODEJS_DEVFILE_YAML_URL='https://raw.githubusercontent.com/eclipse/che-devfile-registry/master/devfiles/nodejs/devfile.yaml'
   export YQ_TOOL_URL='https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_amd64'
@@ -75,14 +72,6 @@ build_and_push_docker_image(){
   docker tag eclipse/che-theia-endpoint-runtime-binary:next maxura/che-theia-endpoint-runtime-binary:${ghprbPullId}
   docker push maxura/che-theia-endpoint-runtime-binary:${ghprbPullId}
 
-  docker tag eclipse/che-remote-plugin-node:next maxura/che-remote-plugin-node:${ghprbPullId}
-  docker push maxura/che-remote-plugin-node:${ghprbPullId}
-
-  docker tag eclipse/che-remote-plugin-runner-java8:next maxura/che-remote-plugin-runner-java8:${ghprbPullId}
-  docker push maxura/che-remote-plugin-runner-java8:${ghprbPullId}
-
-  docker tag eclipse/che-remote-plugin-kubernetes-tooling-1.0.4:next maxura/che-remote-plugin-kubernetes-tooling-1.0.4:${ghprbPullId}
-  docker push maxura/che-remote-plugin-kubernetes-tooling-1.0.4:${ghprbPullId}
 }
 
 prepare_meta_yaml() {
@@ -98,23 +87,9 @@ prepare_meta_yaml() {
   ./yq_linux_amd64 w -i $PR_CHECK_FILES_DIR/che_theia_meta.yaml spec.containers[0].image maxura/che-theia:${ghprbPullId}
   ./yq_linux_amd64 w -i $PR_CHECK_FILES_DIR/che_theia_meta.yaml spec.initContainers[0].image maxura/che-theia-endpoint-runtime-binary:${ghprbPullId}
 
-  VSCODE_YAML_META_YAML_URL="$VSCODE_YAML_META_YAML_DIR_URL/$(curl $VSCODE_YAML_META_YAML_DIR_URL/latest.txt)/meta.yaml"
-  wget $VSCODE_YAML_META_YAML_URL -O $PR_CHECK_FILES_DIR/vscode_yaml_meta.yaml
-  ./yq_linux_amd64 w -i $PR_CHECK_FILES_DIR/vscode_yaml_meta.yaml spec.containers[0].image maxura/che-remote-plugin-node:${ghprbPullId}
-
-  JAVA8_META_YAML_URL="$JAVA8_META_YAML_DIR_URL/$(curl $JAVA8_META_YAML_DIR_URL/latest.txt)/meta.yaml"
-  wget $JAVA8_META_YAML_URL -O $PR_CHECK_FILES_DIR/java8_meta.yaml
-  ./yq_linux_amd64 w -i $PR_CHECK_FILES_DIR/java8_meta.yaml spec.containers[0].image maxura/che-remote-plugin-runner-java8:${ghprbPullId}
-
-  VSCODE_KUBERNETES_TOOLS_META_YAML_URL="$VSCODE_KUBERNETES_TOOLS_META_YAML_DIR_URL/$(curl $VSCODE_KUBERNETES_TOOLS_META_YAML_DIR_URL/latest.txt)/meta.yaml"
-  wget $VSCODE_KUBERNETES_TOOLS_META_YAML_URL -O $PR_CHECK_FILES_DIR/vscode_kubernetes_tools_meta.yaml
-  ./yq_linux_amd64 w -i $PR_CHECK_FILES_DIR/vscode_kubernetes_tools_meta.yaml spec.containers[0].image maxura/che-remote-plugin-kubernetes-tooling-1.0.4:${ghprbPullId}
 
   # patch che/e2e/files/happy-path/happy-path-workspace.yaml
   sed -i "s|id: eclipse/che-theia/next|alias: che-theia\n    reference: $PR_CHECK_FILES_GITHUB_URL/che_theia_meta.yaml|" ${DEVFILE_URL}
-
-  sed -i "s|id: redhat/java/latest|alias: java8\n    reference: $PR_CHECK_FILES_GITHUB_URL/java8_meta.yaml|" ${DEVFILE_URL}
-  sed -i "s|id: redhat/vscode-yaml/latest|alias: vscode_yaml\n    reference: $PR_CHECK_FILES_GITHUB_URL/vscode_yaml_meta.yaml\n  - type: chePlugin\n    alias: vscode_kubernetes_tools\n    reference: $PR_CHECK_FILES_GITHUB_URL/vscode_kubernetes_tools_meta.yaml|" ${DEVFILE_URL}
 
   # Create the simplest devfile to run
   SIMPLE_RELATIVE_DIR="simple"
