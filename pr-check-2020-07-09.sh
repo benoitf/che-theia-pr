@@ -38,6 +38,24 @@ setup_environment() {
   
 #  git clone https://chepullreq4:${GITHUB_TOKEN_ARG}@github.com/chepullreq4/pr-check-files.git
 
+  # Chectl version to use
+  WANTED_HAPPY_PATH_CHANNEL=$(curl -s https://api.github.com/repos/eclipse/che-theia/pulls/${ghprbPullId} | jq -r ".body" | sed -n 's/HAPPY_PATH_CHANNEL=\(.*\)/\1/ p')
+  DEFAULT_HAPPY_PATH_CHANNEL="stable"
+  export HAPPY_PATH_CHANNEL=${DEFAULT_HAPPY_PATH_CHANNEL}
+  if [ -z "$WANTED_HAPPY_PATH_CHANNEL" ]
+  then
+    echo "Use default channel ${HAPPY_PATH_CHANNEL}"
+  else
+    echo "Happy path channel defined in body of the PR: ${WANTED_HAPPY_PATH_CHANNEL}"
+    if [[ "$WANTED_HAPPY_PATH_CHANNEL" == "stable" || "$WANTED_HAPPY_PATH_CHANNEL" == "next" ]]
+    then
+      HAPPY_PATH_CHANNEL=${WANTED_HAPPY_PATH_CHANNEL}
+    else
+      echo "Invalid happy path channel specified in the pull request: ${WANTED_HAPPY_PATH_CHANNEL}. Defaulting to ${DEFAULT_HAPPY_PATH_CHANNEL}"
+    fi
+  fi
+  echo "HAPPY_PATH_CHANNEL = ${HAPPY_PATH_CHANNEL}"
+  
   workaround_k8s_error
 }
 
@@ -58,7 +76,7 @@ printInfo() {
 download_chectl(){
   curl -vsL  https://www.eclipse.org/che/chectl/ > install_chectl.sh
   chmod +x install_chectl.sh
-  sudo PATH=$PATH ./install_chectl.sh --channel=next
+  sudo PATH=$PATH ./install_chectl.sh --channel=${HAPPY_PATH_CHANNEL}
   sudo chmod +x /usr/local/bin/chectl
 }
 
